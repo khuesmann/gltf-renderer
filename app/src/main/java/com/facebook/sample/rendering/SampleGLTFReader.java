@@ -283,7 +283,7 @@ public class SampleGLTFReader {
                     accessor.name = jsonObject.getString("name");
                 }
                 accessor.bufferView = jsonObject.getInt("bufferView"); // index to list of buffers
-                accessor.byteOffset = jsonObject.getInt("byteOffset");
+                accessor.byteOffset = jsonObject.optInt("byteOffset", 0);
                 accessor.componentType = jsonObject.getInt("componentType");
                 accessor.count = jsonObject.getInt("count");
                 accessor.type = jsonObject.getString("type");

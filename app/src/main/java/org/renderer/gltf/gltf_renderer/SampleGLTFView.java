@@ -143,7 +143,7 @@ public class SampleGLTFView extends TextureView {
             GLES20.glClearColor(1.f, 1.f, 1.f, 1.f);
 
             try {
-                gltfObject.createOnGlThread(context, "helloworld.gltf");
+                gltfObject.createOnGlThread(context, "DamagedHelmet.gltf");
             } catch (IOException e) {
                Log.e(TAG, e.getMessage());
             }
