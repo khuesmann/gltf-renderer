@@ -26,9 +26,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URI;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 import java.util.ArrayList;
+
+import de.javagl.jgltf.model.GltfModel;
+import de.javagl.jgltf.model.io.GltfModelReader;
 
 /**
  * This is a trivial glTF renderer that issues GLES draw commands to render the primitive meshes
@@ -178,6 +182,14 @@ public class SampleGLTFRenderer {
         InputStream gltfInput = context.getAssets().open(glTFAssetName);
         SampleGLTFReader.GLTFScene gltfScene = SampleGLTFReader.read(gltfInput);
         gltfRenderObjects = CreateGLTFRenderObjects(gltfScene);
+
+        try {
+            GltfModelReader r = new GltfModelReader();
+            GltfModel gltfModel = r.read(new URI(glTFAssetName));
+            Log.i("glTF", "Loading successfully");
+        } catch(Exception e) {
+            Log.e("glTF", e.toString());
+        }
     }
 
     public void updateModelMatrix(float[] modelMatrix, float scaleFactor) {
