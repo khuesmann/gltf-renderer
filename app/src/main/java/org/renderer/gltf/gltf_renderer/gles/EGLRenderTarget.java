@@ -13,7 +13,7 @@
  * under the License.
  */
 
-package com.facebook.sample.gles;
+package org.renderer.gltf.gltf_renderer.gles;
 
 import android.graphics.SurfaceTexture;
 import android.opengl.EGL14;

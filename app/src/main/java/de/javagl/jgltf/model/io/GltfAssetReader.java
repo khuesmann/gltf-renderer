@@ -95,7 +95,7 @@ public final class GltfAssetReader
     
     /**
      * Read the {@link GltfAsset} from the given URI
-     * 
+     *
      * @param uri The URI
      * @return The {@link GltfModel}
      * @throws IOException If an IO error occurs
@@ -111,7 +111,7 @@ public final class GltfAssetReader
             return gltfAsset;
         }
     }
-    
+
     /**
      * Read the {@link GltfAsset} from the given URI.<br>
      * <br>

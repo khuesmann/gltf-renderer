@@ -27,9 +27,9 @@ import android.util.Log;
 import android.view.Choreographer;
 import android.view.TextureView;
 
-import com.facebook.sample.gles.EGLRenderTarget;
-import com.facebook.sample.gles.GLHelpers;
-import com.facebook.sample.rendering.SampleGLTFRenderer;
+import org.renderer.gltf.gltf_renderer.gles.EGLRenderTarget;
+import org.renderer.gltf.gltf_renderer.gles.GLHelpers;
+import org.renderer.gltf.gltf_renderer.rendering.SampleGLTFRenderer;
 
 import java.io.IOException;
 

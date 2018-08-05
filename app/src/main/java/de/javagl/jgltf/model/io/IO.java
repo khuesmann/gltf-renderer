@@ -293,6 +293,10 @@ public class IO
      */
     public static byte[] readStream(InputStream inputStream) throws IOException
     {
+        // TODO: handle
+        if(inputStream == null)
+            return new byte[0];
+
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         byte buffer[] = new byte[16384];
         while (true)

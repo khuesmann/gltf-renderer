@@ -12,7 +12,7 @@
  * under the License.
  */
 
-package com.facebook.sample.rendering;
+package org.renderer.gltf.gltf_renderer.rendering;
 
 import android.util.Base64;
 import android.util.Log;

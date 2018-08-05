@@ -12,26 +12,29 @@
  * under the License.
  */
 
-package com.facebook.sample.rendering;
+package org.renderer.gltf.gltf_renderer.rendering;
 
 import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.Matrix;
 import android.util.Log;
 
-import com.facebook.sample.gles.GLHelpers;
-import com.facebook.sample.gles.ShaderProgram;
+import org.renderer.gltf.gltf_renderer.gles.GLHelpers;
+import org.renderer.gltf.gltf_renderer.gles.ShaderProgram;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URI;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 import java.util.ArrayList;
 
 import de.javagl.jgltf.model.GltfModel;
+import de.javagl.jgltf.model.MeshModel;
+import de.javagl.jgltf.model.MeshPrimitiveModel;
+import de.javagl.jgltf.model.NodeModel;
+import de.javagl.jgltf.model.SceneModel;
 import de.javagl.jgltf.model.io.GltfModelReader;
 
 /**
@@ -74,6 +77,19 @@ public class SampleGLTFRenderer {
         int vertexByteOffset, vertexByteLength;
         int vertexBufferId;
     }
+
+    /*
+    // Prepares render data for each glTF mesh primitive.
+    private ArrayList<GLTFRenderObject> CreateGLTFRenderObjects(SceneModel gltfScene) {
+        ArrayList<GLTFRenderObject> renderObjects = new ArrayList<>();
+        for(NodeModel nodeModel : gltfScene.getNodeModels()) {
+            for(MeshModel meshModel : nodeModel.getMeshModels()) {
+                for(MeshPrimitiveModel meshPrimitiveModel : meshModel.getMeshPrimitiveModels()) {
+                    meshPrimitiveModel.getMaterialModel().getTechniqueModel().getProgramModel().getFragmentShaderModel().
+                }
+            }
+        }
+/*/
 
     // Prepares render data for each glTF mesh primitive.
     private ArrayList<GLTFRenderObject> CreateGLTFRenderObjects(SampleGLTFReader.GLTFScene gltfScene) {
@@ -146,6 +162,7 @@ public class SampleGLTFRenderer {
                 renderObjects.add(renderObject);
             }
         }
+        //*/
         return renderObjects;
     }
 
@@ -178,14 +195,24 @@ public class SampleGLTFRenderer {
         positionAttribute = shaderProgram.getAttribute("a_Position");
         Matrix.setIdentityM(modelMatrix, 0);
 
-        // Read the gltf file and create render objects.
-        InputStream gltfInput = context.getAssets().open(glTFAssetName);
-        SampleGLTFReader.GLTFScene gltfScene = SampleGLTFReader.read(gltfInput);
-        gltfRenderObjects = CreateGLTFRenderObjects(gltfScene);
-
         try {
             GltfModelReader r = new GltfModelReader();
-            GltfModel gltfModel = r.read(new URI(glTFAssetName));
+
+            InputStream stream = context.getAssets().open(glTFAssetName);
+            GltfModel gltfModel = r.readWithoutReferences(stream);
+
+
+            // For now, only get first scene object (assume we have only one)
+            /*
+            SceneModel sceneModel = gltfModel.getSceneModels().get(0);
+            gltfRenderObjects = CreateGLTFRenderObjects(sceneModel);
+            /*/
+            // Read the gltf file and create render objects.
+            InputStream gltfInput = context.getAssets().open(glTFAssetName);
+            SampleGLTFReader.GLTFScene gltfScene = SampleGLTFReader.read(gltfInput);
+            gltfRenderObjects = CreateGLTFRenderObjects(gltfScene);
+            //*/
+
             Log.i("glTF", "Loading successfully");
         } catch(Exception e) {
             Log.e("glTF", e.toString());
