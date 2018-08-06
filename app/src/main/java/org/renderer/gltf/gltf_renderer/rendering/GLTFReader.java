@@ -42,8 +42,8 @@ import java.util.Iterator;
  * example. It should however help provide a basic understanding of how a glTF renderer goes from
  * loading a JSON file to rendering the glTF scene.
  */
-public class SampleGLTFReader {
-    private static final String TAG = SampleGLTFReader.class.getSimpleName();
+public class GLTFReader {
+    private static final String TAG = GLTFReader.class.getSimpleName();
     private static final String DATA_URI_PREFIX = "data:application/octet-stream;base64,";
 
     static final int TARGET_ARRAY_BUFFER = 34962;

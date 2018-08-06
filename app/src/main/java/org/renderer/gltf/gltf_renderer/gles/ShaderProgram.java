@@ -37,15 +37,14 @@ public class ShaderProgram {
     }
 
     private static void checkLocation(int location, String name) {
-        if (location >= 0) {
-            return;
+        if (location < 0) {
+            throw new RuntimeException("Could not find location for " + name);
         }
-        throw new RuntimeException("Could not find location for " + name);
     }
 
     public int getAttribute(String name) {
         int loc = GLES20.glGetAttribLocation(shaderProgramHandle, name);
-        checkLocation(loc, name);
+        //checkLocation(loc, name);
         return loc;
     }
 
@@ -81,6 +80,11 @@ public class ShaderProgram {
     }
 
     private static int loadShader(int shaderType, String source) {
+        if(source == null || source.isEmpty()) {
+            Log.e(TAG, "Empty source code");
+            return 0;
+        }
+
         int shader = GLES20.glCreateShader(shaderType);
         GLHelpers.checkGlError("glCreateShader type=" + shaderType);
         GLES20.glShaderSource(shader, source);

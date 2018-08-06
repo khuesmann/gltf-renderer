@@ -1,21 +1,35 @@
-/**
- * Copyright 2018 Facebook Inc. All Rights Reserved.
- *
- * Licensed under the Creative Commons CC BY-NC 4.0 Attribution-NonCommercial
- * License (the "License"). You may obtain a copy of the License at
- * https://creativecommons.org/licenses/by-nc/4.0/.
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations
- * under the License.
- */
-
+// Uniforms
 uniform mat4 u_ModelViewProjection;
 
-attribute vec4 a_Position;
+// Attributes
+attribute vec3 a_Position;
+attribute vec3 a_Normal;
+attribute vec4 a_Tanget;
+attribute vec2 a_Texcoord_0; // color texture
+attribute vec2 a_Texcoord_1; // normal map
+attribute vec2 a_Texcoord_2; // occlusion map
+attribute vec2 a_Texcoord_3; // environment map
+attribute vec4 a_color_0;
+//attribute vec4 a_joints_0;
+//attribute vec4 a_weights_0;
+
+// Varyings
+varying vec2 uv_0;
+varying vec2 uv_1;
+varying vec2 uv_2;
+varying vec2 uv_3;
+
+varying vec4 col_0;
+
 
 void main() {
-    gl_Position = u_ModelViewProjection * a_Position;
+
+    // By-pass texture coords.
+    uv_0 = a_Texcoord_0;
+    uv_1 = a_Texcoord_1;
+    uv_2 = a_Texcoord_2;
+    uv_3 = a_Texcoord_3;
+
+    // Calculate vertex position in world space.
+    gl_Position = u_ModelViewProjection * vec4(a_Position, 1);
 }

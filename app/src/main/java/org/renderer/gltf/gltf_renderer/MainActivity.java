@@ -6,19 +6,15 @@ import android.os.Bundle;
 import android.view.TextureView;
 import android.view.View;
 
-import org.renderer.gltf.gltf_renderer.SampleGLTFView;
-
-import org.renderer.gltf.gltf_renderer.R;
-
-public class Renderer extends AppCompatActivity {
-    private SampleGLTFView glTFView;
+public class MainActivity extends AppCompatActivity {
+    private GLTFView glTFView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_renderer);
-        glTFView = (SampleGLTFView) findViewById(R.id.gltf_view);
+        glTFView = (GLTFView) findViewById(R.id.gltf_view);
         init();
     }
 

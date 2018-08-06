@@ -29,31 +29,31 @@ import android.view.TextureView;
 
 import org.renderer.gltf.gltf_renderer.gles.EGLRenderTarget;
 import org.renderer.gltf.gltf_renderer.gles.GLHelpers;
-import org.renderer.gltf.gltf_renderer.rendering.SampleGLTFRenderer;
+import org.renderer.gltf.gltf_renderer.rendering.GLTFRenderer;
 
 import java.io.IOException;
 
 
-public class SampleGLTFView extends TextureView {
-    private static final String TAG = SampleGLTFView.class.getSimpleName();
+public class GLTFView extends TextureView {
+    private static final String TAG = GLTFView.class.getSimpleName();
     private static final String RENDER_THREAD_NAME = "GLTFRenderThread";
 
     private static final float SCALE_FACTOR = 0.5f;
     private float aspectRatio = 1.0f;
 
     private RenderThread renderThread;
-    private final SampleGLTFRenderer gltfObject = new SampleGLTFRenderer();
+    private final GLTFRenderer gltfObject = new GLTFRenderer();
     private Context context;
 
-    public SampleGLTFView(Context context) {
+    public GLTFView(Context context) {
         this(context, null);
     }
 
-    public SampleGLTFView(Context context, AttributeSet attrs) {
+    public GLTFView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public SampleGLTFView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public GLTFView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.context = context;
     }
